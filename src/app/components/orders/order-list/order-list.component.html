@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 text-primary" style="margin-bottom: 100px;font-family: Oswald, Helvetica;">
+    <div class="text-center mb-5">
+        <h2>Orders List</h2>
+    </div>
+
+    <table class="table table-bordered table-stripped table-secondary mb-5" id="listingTable">
+        <thead>
+            <tr>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Full Name</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Email</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Time</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <ng-template ngFor let-tempUser [ngForOf]="userList">
+                <ng-template ngFor let-tempOrder [ngForOf]="orderList">
+                    <ng-container *ngIf="tempUser.id === tempOrder.userId">
+                        <tr>
+                            <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                tempUser.firstName }} {{ tempUser.lastName }} </td>
+                            <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                tempUser.email }}
+                            </td>
+
+                            <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                tempOrder.orderTimeStr }}</td>
+                            <td class="text-center" style="text-align: center; vertical-align: middle;">
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Actions</button>
+                                    <div class="dropdown-menu">
+
+                                        <button class="dropdown-item" style="background-color: #0b4f7e;color: #dce3e7;"
+                                            onmouseout="this.style='background-color: #0b4f7e;color: #dce3e7;'"
+                                            onmouseover="this.style='background-color: #54a4dc;color: #dce3e7;'"
+                                            (click)="redirectOrderDetails(tempOrder.orderId)">
+                                            Details
+                                        </button>
+
+                                        <button class="dropdown-item" style="background-color: #900e14;color: #dce3e7;"
+                                            onmouseout="this.style='background-color: #900e14;color: #dce3e7;'"
+                                            onmouseover="this.style='background-color: #c41119;color: #dce3e7;'"
+                                            (click)="deleteOrder(tempOrder.orderId)">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </ng-template>
+            </ng-template>
+
+        </tbody>
+    </table>
+</div>

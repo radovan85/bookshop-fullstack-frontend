@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 text-primary" style="margin-bottom: 100px;font-family: Oswald, Helvetice;">
+    <div class="text-center mb-5">
+        <h2>Order Details</h2>
+    </div>
+
+    <table class="table table-bordered table-secondary">
+        <tbody>
+            <ng-template ngFor let-tempUser [ngForOf]="userList">
+                <ng-template ngFor let-tempItem [ngForOf]="itemList">
+                    <ng-container *ngIf="tempUser.id === order.userId">
+                        <ng-container *ngIf="tempItem.orderId === order.orderId">
+                            <tr>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">Order Id
+                                </td>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                    order.orderId }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">Full Name
+                                </td>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                    tempUser.firstName }} {{ tempUser.lastName }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">Email</td>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                    tempUser.email }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">Book Title
+                                </td>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                    tempItem.bookTitle }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">Price</td>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">
+                                    <span>&euro;&#160;</span>{{ order.price }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">Order Time
+                                </td>
+                                <td class="text-center" style="text-align: center; vertical-align: middle;">{{
+                                    order.orderTimeStr }}
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </ng-template>
+            </ng-template>
+        </tbody>
+    </table>
+
+    <div class="text-center mt-5">
+        <button class="btn btn-primary mr-4" (click)="redirectAllOrders()">All Orders</button>
+        <button class="btn btn-danger" (click)="deleteOrder(order.orderId)">Delete</button>
+    </div>
+</div>

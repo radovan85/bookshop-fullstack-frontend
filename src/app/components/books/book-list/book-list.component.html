@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 text-primary" style="font-family: Oswald, sans-serif;margin-bottom: 100px;">
+    <div class="text-center mb-5">
+        <h2>Books List</h2>
+    </div>
+
+
+    <ng-template [ngIf]="hasAuthorityAdmin">
+        <div class="mb-4">
+            <button class="btn btn-info" (click)="redirectAddBook()">Add Book</button>
+        </div>
+    </ng-template>
+
+
+    <table id="listingTable" class="table table-bordered table-stripped table-secondary mb-5">
+        <thead>
+            <tr>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Title</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Description</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Author</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Price</th>
+                <th class="text-center" style="text-align: center; vertical-align: middle;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let tempBook of bookList">
+                <td class="text-center" style="text-align: center; vertical-align: middle;">{{ tempBook.title }}</td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">{{ tempBook.description }}
+                </td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">{{ tempBook.author }}</td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
+                    <span>&euro;&#160;</span>
+                    <span [innerHTML]="getNumber(tempBook.price)"></span>
+                </td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Actions</button>
+                        <div class="dropdown-menu">
+
+                            <button class="dropdown-item" style="background-color: #0b4f7e;color: #dce3e7;"
+                                onmouseout="this.style='background-color: #0b4f7e;color: #dce3e7;'"
+                                onmouseover="this.style='background-color: #54a4dc;color: #dce3e7;'"
+                                (click)="redirectBookDetails(tempBook.bookId)">
+                                Details
+                            </button>
+                            <ng-template [ngIf]="hasAuthorityAdmin">
+                                <button class="dropdown-item" style="background-color: #0b4f7e;color: #dce3e7;"
+                                    onmouseout="this.style='background-color: #0b4f7e;color: #dce3e7;'"
+                                    onmouseover="this.style='background-color: #54a4dc;color: #dce3e7;'"
+                                    (click)="redirectUpdateBook(tempBook.bookId)">
+                                    Update
+                                </button>
+                            </ng-template>
+
+                            <ng-template [ngIf]="hasAuthorityAdmin">
+                                <button class="dropdown-item" style="background-color: #900e14;color: #dce3e7;"
+                                    onmouseout="this.style='background-color: #900e14;color: #dce3e7;'"
+                                    onmouseover="this.style='background-color: #c41119;color: #dce3e7;'"
+                                    (click)="deleteBook(tempBook.bookId)">
+                                    Delete
+                                </button>
+                            </ng-template>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

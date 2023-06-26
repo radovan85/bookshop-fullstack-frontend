@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="container mt-5"
+    style="margin-bottom: 100px;font-family: Oswald, sans-serif;color: #12044F;font-weight: 700;">
+    <div class="text-center pt-3">
+        <h3 style="text-transform: uppercase;">book form</h3>
+        <hr>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-6 offset-md-3">
+            <form class="mt-3" (ngSubmit)="addBook()">
+
+                <div class="mb-3 col-md-12">
+                    <label class="form-label">Book Title</label>
+                    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="book.title"
+                        placeholder="Enter Book Title" />
+                    <span class="text-danger" id="titleError" style="visibility: hidden;">Not Empty!Max 50 letters
+                        allowed!
+                    </span>
+                </div>
+
+                <div class="mb-3 col-md-12">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="book.description" placeholder="Enter Description" />
+                    <span class="text-danger" id="descriptionError" style="visibility: hidden;">Not Empty!Max 100
+                        letters allowed!
+                    </span>
+                </div>
+
+                <div class="mb-3 col-md-12">
+                    <label class="form-label">Author</label>
+                    <input type="text" class="form-control" id="author" name="author" [(ngModel)]="book.author"
+                        placeholder="Enter Author" />
+                    <span class="text-danger" id="authorError" style="visibility: hidden;">Not Empty!Max 50 letters
+                        allowed!
+                    </span>
+                </div>
+
+                <div class="mb-5 col-md-12">
+                    <label class="form-label">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" [(ngModel)]="book.price"
+                        placeholder="Enter Price" (keypress)="validateNumber($event)" />
+                    <span class="text-danger" id="priceError" style="visibility: hidden;">Please provide valid price!
+                    </span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info">
+                        Submit
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 text-primary" style="margin-bottom: 100px;font-family: Oswald, Helvetice;">
+    <div class="text-center mb-5">
+        <h2>Book Details</h2>
+    </div>
+
+    <table class="table table-bordered table-secondary">
+        <tbody>
+            <tr>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">Title</td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">{{ book.title }}</td>
+            </tr>
+
+            <tr>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">Description</td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">{{ book.description }}</td>
+            </tr>
+
+            <tr>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">Author</td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">{{ book.author }}</td>
+            </tr>
+
+            <tr>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">Price</td>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
+                    <span>&euro;&#160;</span>
+                    <span [innerHTML]="getNumber(book.price)"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center mt-5">
+        <button class="btn btn-info" (click)="redirectAllBooks()">All Books</button>
+        <ng-template [ngIf]="hasAuthorityUser">
+        <button class="btn btn-primary ml-4" (click)="addOrder(book.bookId)">Order</button>
+        </ng-template>
+    </div>
+</div>

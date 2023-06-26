@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="font-family: Oswald, sans-serif;">
+  <!-- Brand/logo -->
+  <a class="navbar-brand">Logo</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" onmouseover="this.style='cursor: pointer;'" (click)="redirectHome()">Home</a>
+    </li>
+    <ng-template [ngIf]="isAuthenticated">
+    <li class="nav-item">
+      <a class="nav-link" (click)="redirectAllBooks()" onmouseover="this.style='cursor: pointer;'">Books</a>
+    </li>
+    </ng-template>
+    <ng-template [ngIf]="!isAuthenticated">
+      <li class="nav-item">
+        <a class="nav-link" (click)="redirectRegister()" onmouseover="this.style='cursor: pointer;'">Register</a>
+      </li>
+    </ng-template>
+    <ng-template [ngIf]="hasAuthorityAdmin">
+      <li class="nav-item">
+        <a class="nav-link" (click)="redirectAllOrders()" onmouseover="this.style='cursor: pointer;'">Orders</a>
+      </li>
+    </ng-template>
+    <ng-template [ngIf]="isAuthenticated">
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" onmouseover="this.style='cursor: pointer;'">Logout</a>
+      </li>
+    </ng-template>
+    
+  </ul>
+</nav>
